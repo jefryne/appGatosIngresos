@@ -2,7 +2,7 @@ import secrets
 import string
 
 #funcion para generar un ID de usuario aleatorio
-def gerenate_user_id(length=30):
+def generate_user_id(length=30):
     #caracteres posibles para el Id aleatorio 
     characters = string.ascii_letters + string.digits
     

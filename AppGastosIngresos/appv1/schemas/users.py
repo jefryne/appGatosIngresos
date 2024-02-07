@@ -20,4 +20,4 @@ class UserRead(UserBase):
     user_id: str
     created_at: datetime
     update_at: datetime
-    user_status = bool
+    user_status : bool
