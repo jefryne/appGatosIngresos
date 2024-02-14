@@ -22,5 +22,6 @@ class Settings:
 
     SECRET_KEY: str =os.getenv("SECRET_KEY")
     TOKEN_EXPIRE_MIN = 30
+    ALGORITHM = str = os.getenv("ALGORITHM")
 
 settings = Settings()

@@ -1,20 +1,20 @@
 import sys
 
-from appv1.models import User
+from appv1.models.User import User
 from fastapi import HTTPException
 from appv1.schemas.users import UserCreate, UserRead
 from sqlalchemy.orm import Session
-from core.security import get_hashed_password
+from core.security import get_hashed_password, verify_password
 from core.utils import generate_user_id
 
 
-def create_new_user(user:UserCreate, db: Session):
+def create_new_user(user:UserCreate,rol: str, db: Session):
     db_user = User(
         user_id = generate_user_id(),
         full_name = user.full_name,
         mail = user.mail,
         passhash = get_hashed_password(user.passhash),
-        user_role = user.user_role,
+        user_role = rol,
         user_status = user.user_status
     )
     
@@ -36,4 +36,12 @@ def get_user_by_email(mail: str, db: Session):
 
 def get_user_by_id(id: str, db: Session):
     user = db.query(User).filter(User.user_id == id).first()
+    return user
+
+def authenticate_user(username: str, password: str, db: Session):
+    user = get_user_by_email(username, db)
+    if not user:
+        return False
+    if not verify_password(password, user.passhash):
+        return False
     return user
