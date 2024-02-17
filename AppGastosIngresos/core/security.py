@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from core.config import settings
 
+
 pwd_context = CryptContext(schemes=["bcrypt"],
 deprecated="auto")
 
@@ -31,4 +32,5 @@ async def verify_token(token:str):
         return None
     except JWTError:   
         return None
-    
+
+

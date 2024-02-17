@@ -28,6 +28,18 @@ class UserRead(UserBase):
     update_at: datetime
     user_status : bool
 
+
+class UpdateUser(UserBase):
+    user_id: str
+    passhash: str
+    user_role: UserRole
+
+
+class DeleteUser(BaseModel):
+    user_id: str
+    user_status : bool
+    
+
 class Token(BaseModel):
     access_token: str
     token_type: str 
