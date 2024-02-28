@@ -34,11 +34,8 @@ async def create_user(user: UserCreateAdmin, db: Session = Depends(get_session),
         raise HTTPException(status_code=401, detail="User already exists")
     raise HTTPException(status_code=401, detail="Not authorized")
 
-
 #update user, solo dar token usurios activos, todo lo de categorias insert, update, solo el admin puede modificar eliminar categorias crear
 # el admin puede hacerlo de todos el usuario solo de el mismo
-
-
 
 @router.put("/update-user/", response_model=UserRead)
 def update_user_route(user: UpdateUser, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):

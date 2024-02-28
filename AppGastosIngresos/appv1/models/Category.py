@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String, SmallInteger, Boolean
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
+from appv1.models.base_class import Base
 
-Base = declarative_base()
 
 class Category(Base):
     __tablename__ = 'category'
@@ -11,4 +11,4 @@ class Category(Base):
     category_description = Column(String(120))
     category_status = Column(Boolean, default=True)
 
-
+    transactions = relationship("Transactions", back_populates="category")

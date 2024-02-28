@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.post("/create-category/", response_model=CategoryCreate)
-async def create_user(category: CategoryCreate, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
+async def create_category(category: CategoryCreate, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
     if current_user.user_role == 'admin':
         return create_new_category(category, db)
     raise HTTPException(status_code=401, detail="Not authorized")
@@ -21,7 +21,7 @@ async def create_user(category: CategoryCreate, db: Session = Depends(get_sessio
 
 
 @router.put("/update-category/", response_model=CategoryRead)
-def update_user_route(category: CategoryUpdate, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
+def update_category_route(category: CategoryUpdate, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
     if current_user.user_role == "admin":
         if category is not None: 
             category_updated = update_category(category, db)
@@ -34,7 +34,7 @@ def update_user_route(category: CategoryUpdate, db: Session = Depends(get_sessio
 
 
 @router.delete("/delete-category/", response_model=CategoryRead)
-def update_user_route(category: DeleteCategory, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
+def update_category_route(category: DeleteCategory, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
     if current_user.user_role == "admin":
         if category is not None: 
             category_updated = delete_Category(category, db)
@@ -46,7 +46,7 @@ def update_user_route(category: DeleteCategory, db: Session = Depends(get_sessio
     raise HTTPException(status_code=401, detail="Invalid Token")
 
 @router.get("/get/{category_id}", response_model=CategoryRead)
-def read_user(category_id: str, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
+def read_category(category_id: str, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
     if current_user.user_role == "admin":
         category = get_category_by_id(category_id, db)
         if category is None:
