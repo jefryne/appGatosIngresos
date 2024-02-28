@@ -73,7 +73,7 @@ def read_user(user_id: str, db: Session = Depends(get_session), current_user: Us
     raise HTTPException(status_code=401, detail="Invalid Token")
 
 @router.get("/get/", response_model=List[UserRead])
-def read_categories(db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
+def read_users(db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
     if current_user.user_role == "admin":
         users = get_all_user(db)
         return users
