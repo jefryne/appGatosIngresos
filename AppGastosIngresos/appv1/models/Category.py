@@ -10,5 +10,5 @@ class Category(Base):
     category_name = Column(String(50))
     category_description = Column(String(120))
     category_status = Column(Boolean, default=True)
-
+    
     transactions = relationship("Transactions", back_populates="category")
