@@ -44,9 +44,9 @@ def read_category(transaction_id: int, db: Session = Depends(get_session), curre
     raise HTTPException(status_code=401, detail="Invalid Token")
 
 @router.get("/get/", response_model=List[TransactionRead])
-def read_transaction(db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
+def read_transaction(offzise: int, limit: int, db: Session = Depends(get_session), current_user: UserRead = Depends(get_current_user)):
     if current_user.user_role == "admin":
-        transaction = get_all_transaction(db)
+        transaction = get_all_transaction(offzise,limit,db)
         return transaction
     raise HTTPException(status_code=401, detail="Invalid Token")
 
