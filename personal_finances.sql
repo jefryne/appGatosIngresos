@@ -1,3 +1,7 @@
+CREATE DATABASE personal_finances;
+USE personal_finances;
+
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
