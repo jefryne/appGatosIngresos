@@ -64,6 +64,6 @@ def get_transaction_by_user(id: int, db: Session):
 
 
 
-def get_all_transaction(db: Session):
-    transactions = db.query(Transactions).all()
+def get_all_transaction(offset,limit,db: Session):
+    transactions = db.query(Transactions).offset(offset).limit(limit).all()
     return transactions
